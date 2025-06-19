@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickPlay Games - Instant Web Games Platform</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .game-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-gamepad text-2xl text-primary"></i>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">QuickPlay Games</span>
+                </div>
+                
+                <!-- 搜索框和导航链接 -->
+                <div class="flex items-center space-x-4">
+                    <!-- 搜索框 -->
+                    <div class="relative hidden md:block">
+                        <input type="search" class="search-input w-64 px-4 py-2 pl-10 pr-4 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search games...">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    
+                    <!-- 导航链接 -->
+                    <a href="categories.html" class="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-th-large"></i>
+                        <span class="hidden sm:inline">Categories</span>
+                    </a>
+                    
+                    <a href="recent.html" class="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-clock"></i>
+                        <span class="hidden sm:inline">Recent</span>
+                    </a>
+                    
+                    <a href="favorites.html" class="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-heart"></i>
+                        <span class="hidden sm:inline">Favorites</span>
+                    </a>
+                    
+                    <a href="settings.html" class="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-cog"></i>
+                        <span class="hidden sm:inline">Settings</span>
+                    </a>
+                    
+                    <!-- 主题切换按钮 -->
+                    <button id="theme-toggle" class="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 推荐游戏部分 -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Recommended Games</h2>
+                <a href="categories.html" class="text-primary hover:text-primary-dark font-medium flex items-center space-x-1">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="recommended-games" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 推荐游戏卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- 游戏分类部分 -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Game Categories</h2>
+                <a href="categories.html" class="text-primary hover:text-primary-dark font-medium flex items-center space-x-1">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="categories.html?category=puzzle" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-puzzle-piece text-3xl text-blue-500 mb-3"></i>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Puzzle</h3>
+                </a>
+                
+                <a href="categories.html?category=casual" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-coffee text-3xl text-green-500 mb-3"></i>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Casual</h3>
+                </a>
+                
+                <a href="categories.html?category=racing" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-car text-3xl text-red-500 mb-3"></i>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Racing</h3>
+                </a>
+                
+                <a href="categories.html?category=action" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-fist-raised text-3xl text-orange-500 mb-3"></i>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Action</h3>
+                </a>
+                
+                <a href="categories.html?category=strategy" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-chess text-3xl text-purple-500 mb-3"></i>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Strategy</h3>
+                </a>
+                
+                <a href="categories.html?category=sports" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-football-ball text-3xl text-yellow-500 mb-3"></i>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Sports</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- 最近玩过部分 -->
+        <section id="recent-games-section" class="mb-12" style="display: none;">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Recently Played</h2>
+                <a href="recent.html" class="text-primary hover:text-primary-dark font-medium flex items-center space-x-1">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="recent-games" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 最近玩过的游戏卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-gamepad text-xl text-primary"></i>
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">QuickPlay Games</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Instant web games platform, providing you with the best gaming experience.</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">Feedback</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    © 2024 QuickPlay Games. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    
+    <!-- 页面专属JavaScript -->
+    <script>
+        // 收藏功能
+        function toggleFavorite(gameId, buttonElement) {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const isFavorited = favorites.includes(gameId);
+            
+            if (isFavorited) {
+                favorites = favorites.filter(id => id !== gameId);
+                buttonElement.innerHTML = '<i class="far fa-heart"></i>';
+                buttonElement.classList.remove('text-red-500');
+                buttonElement.classList.add('text-gray-400');
+            } else {
+                favorites.push(gameId);
+                buttonElement.innerHTML = '<i class="fas fa-heart"></i>';
+                buttonElement.classList.remove('text-gray-400');
+                buttonElement.classList.add('text-red-500');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+        
+        // 创建游戏卡片
+        function createGameCard(game, isRecent = false, recentData = null) {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const isFavorited = favorites.includes(game.id);
+            
+            const categoryColors = {
+                'blue': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+                'green': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+                'red': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
+                'orange': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
+                'purple': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+                'yellow': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
+            };
+            
+            const recentInfo = isRecent && recentData ? `
+                <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                    <span>${formatTimeAgo(recentData.timestamp)}</span> • 
+                    <span>Played ${recentData.playCount} times</span>
+                </div>
+            ` : '';
+            
+            const actionButton = isRecent ? 
+                `<a href="${game.gameUrl}" class="flex-1 bg-secondary hover:bg-secondary-dark text-white px-4 py-2 rounded-md text-sm font-medium transition-colors text-center">Continue Game</a>` :
+                `<a href="${game.gameUrl}" class="flex-1 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md text-sm font-medium transition-colors text-center">Start Game</a>`;
+            
+            return `
+                <div class="game-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700">
+                        <img src="${game.imageUrl}" alt="${game.name}" class="w-full h-48 object-cover">
+                    </div>
+                    
+                    <div class="p-4">
+                        ${recentInfo}
+                        
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-semibold text-gray-900 dark:text-white text-lg">${game.name}</h3>
+                            <button onclick="toggleFavorite('${game.id}', this)" class="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                                isFavorited ? 'text-red-500' : 'text-gray-400'
+                            }">
+                                <i class="${isFavorited ? 'fas' : 'far'} fa-heart"></i>
+                            </button>
+                        </div>
+                        
+                        <span class="inline-block px-2 py-1 text-xs font-medium rounded-full mb-3 ${
+                            categoryColors[game.categoryColor] || categoryColors['blue']
+                        }">
+                            ${game.category}
+                        </span>
+                        
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">${game.description}</p>
+                        
+                        <div class="flex space-x-2">
+                            ${actionButton}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 格式化时间
+        function formatTimeAgo(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp;
+            const minutes = Math.floor(diff / (1000 * 60));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            if (minutes < 1) return 'Just now';
+            if (minutes < 60) return `${minutes} minutes ago`;
+            if (hours < 24) return hours === 1 ? 'Today' : `${hours} hours ago`;
+            if (days === 1) return 'Yesterday';
+            if (days < 7) return `${days} days ago`;
+            return `${Math.floor(days / 7)} weeks ago`;
+        }
+        
+        // 加载推荐游戏
+        function loadRecommendedGames() {
+            const container = document.getElementById('recommended-games');
+            const recommendedGames = window.allGames.slice(0, 4);
+            
+            container.innerHTML = recommendedGames.map(game => createGameCard(game)).join('');
+        }
+        
+        // 加载最近玩过的游戏预览
+        function loadRecentlyPlayedPreview() {
+            const recentlyPlayed = JSON.parse(localStorage.getItem('recentlyPlayed') || '[]');
+            const section = document.getElementById('recent-games-section');
+            const container = document.getElementById('recent-games');
+            
+            if (recentlyPlayed.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            
+            // 获取最新的2-4个游戏
+            const recentGames = recentlyPlayed
+                .sort((a, b) => b.timestamp - a.timestamp)
+                .slice(0, 4)
+                .map(recentData => {
+                    const game = window.getGameById(recentData.gameId);
+                    return game ? { game, recentData } : null;
+                })
+                .filter(item => item !== null);
+            
+            container.innerHTML = recentGames.map(({ game, recentData }) => 
+                createGameCard(game, true, recentData)
+            ).join('');
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待main.js加载完成
+            setTimeout(() => {
+                if (window.allGames) {
+                    loadRecommendedGames();
+                    loadRecentlyPlayedPreview();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

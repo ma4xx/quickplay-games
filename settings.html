@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - QuickPlay Games</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Global Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .game-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <!-- 导航栏 -->
+        <nav class="flex items-center justify-between py-6">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-gamepad text-white text-sm"></i>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">QuickPlay Games</span>
+            </div>
+            
+            <!-- 搜索框和导航链接 -->
+            <div class="hidden md:flex items-center space-x-6">
+                <!-- 搜索框 -->
+                <div class="relative">
+                    <input type="search" placeholder="Search games..." class="w-64 px-4 py-2 pl-10 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                
+                <!-- 导航链接 -->
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
+                    <a href="categories.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Categories</a>
+                    <a href="recent.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Recent</a>
+                    <a href="favorites.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Favorites</a>
+                    <a href="settings.html" class="text-blue-600 dark:text-blue-400 font-medium">Settings</a>
+                </div>
+            </div>
+            
+            <!-- 主题切换按钮 -->
+            <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+        
+        <!-- 主要内容区域 -->
+        <main class="py-8">
+            <!-- 页面主标题 -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Settings</h1>
+                <p class="text-gray-600 dark:text-gray-400">Customize your gaming experience</p>
+            </div>
+            
+            <!-- 设置区域 -->
+            <div class="max-w-4xl mx-auto space-y-8">
+                
+                <!-- 外观设置区域 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                        <i class="fas fa-palette mr-3 text-blue-600"></i>
+                        Appearance
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-medium text-gray-900 dark:text-white">Theme</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Choose your preferred interface theme</p>
+                                <p class="text-sm text-blue-600 dark:text-blue-400 mt-1" id="current-theme-display">Current theme: Light</p>
+                            </div>
+                            <button id="theme-switch-btn" class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 dark:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                <span id="theme-switch-indicator" class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 数据管理区域 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                        <i class="fas fa-database mr-3 text-green-600"></i>
+                        Data Management
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- 数据说明 -->
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-blue-600 dark:text-blue-400 mt-0.5 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-blue-900 dark:text-blue-100 mb-1">Privacy Notice</h4>
+                                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                                        Your gaming data (recent games, favorites, game saves) is stored locally in your browser. 
+                                        We do not collect or upload this data to our servers. All data remains private and under your control.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 数据清除按钮 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <button id="clear-recent-btn" class="w-full flex items-center justify-center px-4 py-3 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 hover:bg-yellow-200 dark:hover:bg-yellow-800 rounded-lg transition-colors">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    Clear Recent Games
+                                </button>
+                                
+                                <button id="clear-favorites-btn" class="w-full flex items-center justify-center px-4 py-3 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 hover:bg-orange-200 dark:hover:bg-orange-800 rounded-lg transition-colors">
+                                    <i class="fas fa-heart mr-2"></i>
+                                    Clear Favorites
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <button id="clear-saves-btn" class="w-full flex items-center justify-center px-4 py-3 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 hover:bg-purple-200 dark:hover:bg-purple-800 rounded-lg transition-colors">
+                                    <i class="fas fa-save mr-2"></i>
+                                    Clear Game Saves
+                                </button>
+                                
+                                <button id="clear-all-data-btn" class="w-full flex items-center justify-center px-4 py-3 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 hover:bg-red-200 dark:hover:bg-red-800 rounded-lg transition-colors">
+                                    <i class="fas fa-trash mr-2"></i>
+                                    Clear All Data
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 操作反馈区域 -->
+                        <div id="operation-feedback" class="hidden p-3 rounded-lg">
+                            <p class="text-sm font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 关于区域 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                        <i class="fas fa-info-circle mr-3 text-purple-600"></i>
+                        About QuickPlay Games
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                QuickPlay Games is an instant web games platform that provides the best gaming experience 
+                                without downloads or installations. Enjoy a wide variety of games directly in your browser.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-white mb-2">Version Information</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Version: 1.0.0</p>
+                                    <p class="text-gray-600 dark:text-gray-400">Release Date: 2024</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-white mb-2">Open Source</h4>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-2">This project is open source and available on GitHub.</p>
+                                    <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                                        <i class="fab fa-github mr-2"></i>
+                                        View on GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+        
+        <!-- 页脚 -->
+        <footer class="border-t border-gray-200 dark:border-gray-700 mt-16 pt-8 pb-6">
+            <div class="text-center">
+                <div class="mb-4">
+                    <div class="flex items-center justify-center space-x-2 mb-2">
+                        <div class="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center">
+                            <i class="fas fa-gamepad text-white text-xs"></i>
+                        </div>
+                        <span class="font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">QuickPlay Games</span>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                        Instant web games platform providing the best gaming experience.
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 mb-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-2">Quick Links</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">About Us</a></li>
+                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Feedback</a></li>
+                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-2">Contact Us</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">support@quickplaygames.com</p>
+                    </div>
+                </div>
+                
+                <div class="text-xs text-gray-500 dark:text-gray-500">
+                    © 2024 QuickPlay Games. All rights reserved.
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    
+    <!-- 页面专属JavaScript -->
+    <script>
+        // 显示操作反馈
+        function showFeedback(message, type = 'success') {
+            const feedback = document.getElementById('operation-feedback');
+            const messageElement = feedback.querySelector('p');
+            
+            // 设置样式
+            feedback.className = `p-3 rounded-lg ${type === 'success' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'}`;
+            
+            // 设置消息
+            messageElement.textContent = message;
+            
+            // 显示反馈
+            feedback.classList.remove('hidden');
+            
+            // 3秒后自动隐藏
+            setTimeout(() => {
+                feedback.classList.add('hidden');
+            }, 3000);
+        }
+        
+        // 更新主题显示
+        function updateThemeDisplay() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const themeDisplay = document.getElementById('current-theme-display');
+            const switchIndicator = document.getElementById('theme-switch-indicator');
+            const switchBtn = document.getElementById('theme-switch-btn');
+            
+            if (currentTheme === 'dark') {
+                themeDisplay.textContent = 'Current theme: Dark';
+                switchIndicator.classList.add('translate-x-6');
+                switchIndicator.classList.remove('translate-x-1');
+                switchBtn.classList.add('bg-blue-600');
+                switchBtn.classList.remove('bg-gray-200');
+            } else {
+                themeDisplay.textContent = 'Current theme: Light';
+                switchIndicator.classList.remove('translate-x-6');
+                switchIndicator.classList.add('translate-x-1');
+                switchBtn.classList.remove('bg-blue-600');
+                switchBtn.classList.add('bg-gray-200');
+            }
+        }
+        
+        // 主题切换功能
+        function setupThemeSwitch() {
+            const themeSwitchBtn = document.getElementById('theme-switch-btn');
+            
+            themeSwitchBtn.addEventListener('click', function() {
+                const currentTheme = localStorage.getItem('theme') || 'light';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                // 更新localStorage
+                localStorage.setItem('theme', newTheme);
+                
+                // 应用主题
+                if (newTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                
+                // 更新显示
+                updateThemeDisplay();
+                
+                // 同步导航栏主题按钮
+                const navThemeBtn = document.getElementById('theme-toggle');
+                if (navThemeBtn) {
+                    const icon = navThemeBtn.querySelector('i');
+                    if (newTheme === 'dark') {
+                        icon.className = 'fas fa-sun';
+                    } else {
+                        icon.className = 'fas fa-moon';
+                    }
+                }
+                
+                showFeedback(`Theme switched to ${newTheme === 'dark' ? 'Dark' : 'Light'} mode`);
+            });
+        }
+        
+        // 数据清除功能
+        function setupDataManagement() {
+            // 清空最近玩过记录
+            document.getElementById('clear-recent-btn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all recent game records? This action cannot be undone.')) {
+                    // 清除最近游戏记录
+                    localStorage.removeItem('recentlyPlayed');
+                    
+                    // 清除游戏统计数据
+                    const keys = Object.keys(localStorage);
+                    keys.forEach(key => {
+                        if (key.startsWith('gameStats_')) {
+                            localStorage.removeItem(key);
+                        }
+                    });
+                    
+                    showFeedback('Recent game records cleared successfully');
+                }
+            });
+            
+            // 清空收藏记录
+            document.getElementById('clear-favorites-btn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all favorite games? This action cannot be undone.')) {
+                    localStorage.removeItem('favorites');
+                    showFeedback('Favorite games cleared successfully');
+                }
+            });
+            
+            // 清空游戏存档
+            document.getElementById('clear-saves-btn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all game saves? This action cannot be undone.')) {
+                    const keys = Object.keys(localStorage);
+                    keys.forEach(key => {
+                        if (key.startsWith('gameState_') || key.startsWith('save_')) {
+                            localStorage.removeItem(key);
+                        }
+                    });
+                    showFeedback('Game saves cleared successfully');
+                }
+            });
+            
+            // 清空所有数据
+            document.getElementById('clear-all-data-btn').addEventListener('click', function() {
+                if (confirm('⚠️ WARNING: This will clear ALL your local data including theme preferences, recent games, favorites, and game saves. This action cannot be undone. Are you absolutely sure?')) {
+                    if (confirm('This is your final confirmation. Click OK to permanently delete all your local data.')) {
+                        // 清除所有相关数据
+                        const keys = Object.keys(localStorage);
+                        keys.forEach(key => {
+                            if (key === 'theme' || 
+                                key === 'favorites' || 
+                                key === 'recentlyPlayed' || 
+                                key.startsWith('gameStats_') || 
+                                key.startsWith('gameState_') || 
+                                key.startsWith('save_')) {
+                                localStorage.removeItem(key);
+                            }
+                        });
+                        
+                        // 重置主题为默认
+                        document.documentElement.classList.remove('dark');
+                        updateThemeDisplay();
+                        
+                        showFeedback('All local data cleared successfully');
+                    }
+                }
+            });
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化主题显示
+            updateThemeDisplay();
+            
+            // 设置主题切换
+            setupThemeSwitch();
+            
+            // 设置数据管理
+            setupDataManagement();
+        });
+    </script>
+</body>
+</html>
