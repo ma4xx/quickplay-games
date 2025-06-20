@@ -12,15 +12,7 @@ const allGames = [
         imageUrl: 'assets/games/tetris/cover.svg',
         gameUrl: 'game.html?game=tetris'
     },
-    {
-        id: 'snake',
-        name: 'Snake Adventure',
-        description: 'Control the snake to eat food and grow, avoid hitting yourself and walls',
-        category: 'Casual',
-        categoryColor: 'green',
-        imageUrl: 'assets/games/snake/cover.svg',
-        gameUrl: 'game.html?game=snake'
-    },
+
     {
         id: 'puzzle',
         name: 'Number Sliding Puzzle',
@@ -31,22 +23,22 @@ const allGames = [
         gameUrl: 'game.html?game=puzzle'
     },
     {
-        id: 'racing',
-        name: 'Speed Racing',
-        description: 'Race on the track, avoid obstacles, and challenge for the highest score',
-        category: 'Racing',
-        categoryColor: 'red',
-        imageUrl: 'assets/games/racing/cover.svg',
-        gameUrl: 'game.html?game=racing'
-    },
+            id: 'speed-racing',
+            name: 'Speed Racing',
+            description: 'High-speed racing game with stunning graphics',
+            category: 'Racing',
+            categoryColor: '#FF6B6B',
+            imageUrl: 'assets/games/racing/cover.svg',
+            gameUrl: 'game.html?game=speed-racing'
+        },
     {
-        id: 'react-tetris',
-        name: 'React Tetris',
-        description: '使用React构建的经典俄罗斯方块，支持数据持久化和响应式操作',
-        category: 'Puzzle',
-        categoryColor: 'blue',
-        imageUrl: 'assets/games/react-tetris/cover.svg',
-        gameUrl: 'game.html?game=react-tetris'
+        id: 'snake',
+        name: 'Classic Snake',
+        description: 'Classic Nokia snake game - eat food, grow longer, and avoid hitting yourself',
+        category: 'Arcade',
+        categoryColor: 'green',
+        imageUrl: 'assets/games/snake/cover.svg',
+        gameUrl: 'game.html?game=snake'
     }
 ];
 

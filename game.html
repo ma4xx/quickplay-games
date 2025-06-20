@@ -182,10 +182,26 @@
             const gameContainer = document.getElementById('game-container');
             const loadingIndicator = document.getElementById('loading-indicator');
             
+            // 获取游戏信息以确定正确的路径
+            const game = allGames.find(g => g.id === gameId);
+            if (!game) {
+                showError('游戏不存在');
+                return;
+            }
+            
             // 创建iframe
             gameIframe = document.createElement('iframe');
             gameIframe.id = 'game-iframe';
-            gameIframe.src = `assets/games/${gameId}/index.html`;
+            
+            // 根据游戏ID确定正确的路径
+            let gamePath;
+            if (gameId === 'speed-racing') {
+                gamePath = 'assets/games/racing/index.html';
+            } else {
+                gamePath = `assets/games/${gameId}/index.html`;
+            }
+            
+            gameIframe.src = gamePath;
             gameIframe.allowFullscreen = true;
             
             // 游戏加载完成后隐藏加载指示器

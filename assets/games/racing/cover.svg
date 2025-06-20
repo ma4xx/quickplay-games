@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="racingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF4757;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C44569;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D2FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3742FA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="200" fill="url(#racingGradient)" rx="20"/>
+  
+  <!-- Racing track -->
+  <path d="M 30 100 Q 100 50 170 100 Q 100 150 30 100" fill="none" stroke="#2C2C54" stroke-width="8" opacity="0.8"/>
+  <path d="M 40 100 Q 100 60 160 100 Q 100 140 40 100" fill="none" stroke="#40407A" stroke-width="4" opacity="0.6"/>
+  
+  <!-- Futuristic racing ship -->
+  <g transform="translate(100,100) rotate(-15)">
+    <!-- Ship body -->
+    <ellipse cx="0" cy="0" rx="25" ry="8" fill="url(#shipGradient)"/>
+    <!-- Ship nose -->
+    <polygon points="25,0 35,-3 35,3" fill="#FFD700"/>
+    <!-- Ship wings -->
+    <ellipse cx="-10" cy="-12" rx="8" ry="3" fill="#00D2FF" opacity="0.8"/>
+    <ellipse cx="-10" cy="12" rx="8" ry="3" fill="#00D2FF" opacity="0.8"/>
+    <!-- Engine glow -->
+    <ellipse cx="-25" cy="0" rx="6" ry="4" fill="#FF6B6B" opacity="0.9"/>
+    <ellipse cx="-30" cy="0" rx="3" ry="2" fill="#FFD700" opacity="0.7"/>
+  </g>
+  
+  <!-- Speed lines -->
+  <g opacity="0.6">
+    <line x1="20" y1="80" x2="50" y2="85" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="15" y1="100" x2="45" y2="100" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="20" y1="120" x2="50" y2="115" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Hexagonal elements (HexGL theme) -->
+  <polygon points="170,40 180,35 190,40 190,50 180,55 170,50" fill="#FFD700" opacity="0.8"/>
+  <polygon points="160,160 170,155 180,160 180,170 170,175 160,170" fill="#00D2FF" opacity="0.8"/>
+</svg>

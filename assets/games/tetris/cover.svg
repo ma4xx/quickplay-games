@@ -1,5 +1,36 @@
 <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="300" height="200" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
-  <text x="150" y="100" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="18" fill="#666">Tetris Game Cover</text>
-  <text x="150" y="130" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="12" fill="#999">Placeholder Image</text>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="200" fill="url(#bg)"/>
+  <text x="150" y="60" text-anchor="middle" fill="#00d4ff" font-size="28" font-family="Arial, sans-serif" font-weight="bold">React</text>
+  <text x="150" y="90" text-anchor="middle" fill="#ffffff" font-size="32" font-family="Arial, sans-serif" font-weight="bold">Tetris</text>
+  
+  <!-- Tetris blocks -->
+  <g transform="translate(80, 110)">
+    <!-- T-piece -->
+    <rect x="0" y="0" width="15" height="15" fill="#ff6b6b" stroke="#fff" stroke-width="1"/>
+    <rect x="15" y="0" width="15" height="15" fill="#ff6b6b" stroke="#fff" stroke-width="1"/>
+    <rect x="30" y="0" width="15" height="15" fill="#ff6b6b" stroke="#fff" stroke-width="1"/>
+    <rect x="15" y="15" width="15" height="15" fill="#ff6b6b" stroke="#fff" stroke-width="1"/>
+    
+    <!-- L-piece -->
+    <rect x="60" y="0" width="15" height="15" fill="#4ecdc4" stroke="#fff" stroke-width="1"/>
+    <rect x="60" y="15" width="15" height="15" fill="#4ecdc4" stroke="#fff" stroke-width="1"/>
+    <rect x="60" y="30" width="15" height="15" fill="#4ecdc4" stroke="#fff" stroke-width="1"/>
+    <rect x="75" y="30" width="15" height="15" fill="#4ecdc4" stroke="#fff" stroke-width="1"/>
+    
+    <!-- Square piece -->
+    <rect x="105" y="15" width="15" height="15" fill="#f9ca24" stroke="#fff" stroke-width="1"/>
+    <rect x="120" y="15" width="15" height="15" fill="#f9ca24" stroke="#fff" stroke-width="1"/>
+    <rect x="105" y="30" width="15" height="15" fill="#f9ca24" stroke="#fff" stroke-width="1"/>
+    <rect x="120" y="30" width="15" height="15" fill="#f9ca24" stroke="#fff" stroke-width="1"/>
+  </g>
+  
+  <!-- React logo hint -->
+  <circle cx="250" cy="50" r="8" fill="none" stroke="#61dafb" stroke-width="2"/>
+  <circle cx="250" cy="50" r="2" fill="#61dafb"/>
 </svg>
