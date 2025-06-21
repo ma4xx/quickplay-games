@@ -78,7 +78,7 @@
         <div id="loading-indicator" class="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900 z-10">
             <div class="text-center">
                 <div class="game-loading w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p class="text-gray-600 dark:text-gray-400">游戏加载中...</p>
+                <p class="text-gray-600 dark:text-gray-400">Loading game...</p>
             </div>
         </div>
         
@@ -92,29 +92,29 @@
             <div class="flex items-center justify-between h-full">
                 <!-- 左侧控制按钮 -->
                 <div class="flex items-center space-x-4">
-                    <button id="fullscreen-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="全屏">
+                    <button id="fullscreen-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="Fullscreen">
                         <i class="fas fa-expand mr-2"></i>
-                        <span class="hidden sm:inline">全屏</span>
+                        <span class="hidden sm:inline">Fullscreen</span>
                     </button>
-                    <button id="sound-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="声音">
+                    <button id="sound-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="Sound">
                         <i class="fas fa-volume-up mr-2"></i>
-                        <span class="hidden sm:inline">声音</span>
+                        <span class="hidden sm:inline">Sound</span>
                     </button>
-                    <button id="restart-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="重新开始">
+                    <button id="restart-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="Restart">
                         <i class="fas fa-redo mr-2"></i>
-                        <span class="hidden sm:inline">重新开始</span>
+                        <span class="hidden sm:inline">Restart</span>
                     </button>
                 </div>
                 
                 <!-- 右侧控制按钮 -->
                 <div class="flex items-center space-x-4">
-                    <button id="favorite-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="收藏">
+                    <button id="favorite-btn" class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors" title="Favorite">
                         <i class="far fa-heart mr-2"></i>
-                        <span class="hidden sm:inline">收藏</span>
+                        <span class="hidden sm:inline">Favorite</span>
                     </button>
-                    <a href="index.html" class="flex items-center px-3 py-2 bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 text-red-600 dark:text-red-400 rounded-lg transition-colors" title="退出游戏">
+                    <a href="index.html" class="flex items-center px-3 py-2 bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 text-red-600 dark:text-red-400 rounded-lg transition-colors" title="Exit Game">
                         <i class="fas fa-times mr-2"></i>
-                        <span class="hidden sm:inline">退出</span>
+                        <span class="hidden sm:inline">Exit</span>
                     </a>
                 </div>
             </div>
@@ -395,14 +395,22 @@
             let recentlyPlayed = JSON.parse(localStorage.getItem('recentlyPlayed') || '[]');
             
             // 移除已存在的相同游戏记录
-            recentlyPlayed = recentlyPlayed.filter(game => game.id !== gameId);
+            recentlyPlayed = recentlyPlayed.filter(game => game.gameId !== gameId);
+            
+            // 获取或创建游戏统计数据
+            const statsKey = `gameStats_${gameId}`;
+            let stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
+            stats.playCount = (stats.playCount || 0) + 1;
+            stats.lastPlayed = Date.now();
+            localStorage.setItem(statsKey, JSON.stringify(stats));
             
             // 添加新记录到开头
             recentlyPlayed.unshift({
-                id: gameId,
+                gameId: gameId,
                 name: currentGame.name,
                 category: currentGame.category,
-                timestamp: Date.now()
+                lastPlayed: Date.now(),
+                playCount: stats.playCount
             });
             
             // 保持最多10条记录
@@ -411,20 +419,11 @@
             }
             
             localStorage.setItem('recentlyPlayed', JSON.stringify(recentlyPlayed));
-            
-            // 更新游戏统计
-            updateGameStats(gameId);
         }
 
-        // 更新游戏统计
+        // 更新游戏统计（已合并到recordRecentlyPlayed函数中）
         function updateGameStats(gameId) {
-            const statsKey = `gameStats_${gameId}`;
-            let stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
-            
-            stats.playCount = (stats.playCount || 0) + 1;
-            stats.lastPlayed = Date.now();
-            
-            localStorage.setItem(statsKey, JSON.stringify(stats));
+            // 此函数已废弃，统计逻辑已移至recordRecentlyPlayed函数
         }
 
         // 显示错误信息
