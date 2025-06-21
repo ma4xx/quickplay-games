@@ -54,8 +54,8 @@
                         <span>Back to Home</span>
                     </a>
                     <div class="border-l border-gray-300 dark:border-gray-600 pl-4">
-                        <h1 id="game-title" class="text-lg font-semibold text-gray-900 dark:text-white">加载中...</h1>
-                        <span id="game-category" class="inline-block px-2 py-1 text-xs bg-primary text-white rounded-full mt-1">游戏</span>
+                        <h1 id="game-title" class="text-lg font-semibold text-gray-900 dark:text-white">Loading...</h1>
+                        <span id="game-category" class="inline-block px-2 py-1 text-xs bg-primary text-white rounded-full mt-1">Game</span>
                     </div>
                 </div>
                 
@@ -283,12 +283,12 @@
             
             if (isFullscreen) {
                 icon.className = 'fas fa-compress mr-2';
-                if (text) text.textContent = '退出全屏';
-                btn.title = '退出全屏';
+                if (text) text.textContent = 'Exit Fullscreen';
+                btn.title = 'Exit Fullscreen';
             } else {
                 icon.className = 'fas fa-expand mr-2';
-                if (text) text.textContent = '全屏';
-                btn.title = '全屏';
+                if (text) text.textContent = 'Fullscreen';
+                btn.title = 'Fullscreen';
             }
         }
 
@@ -302,12 +302,12 @@
             
             if (soundEnabled) {
                 icon.className = 'fas fa-volume-up mr-2';
-                if (text) text.textContent = '声音';
-                btn.title = '声音';
+                if (text) text.textContent = 'Sound';
+                btn.title = 'Sound';
             } else {
                 icon.className = 'fas fa-volume-mute mr-2';
-                if (text) text.textContent = '静音';
-                btn.title = '静音';
+                if (text) text.textContent = 'Mute';
+                btn.title = 'Mute';
             }
             
             // 可选：向游戏iframe发送声音控制消息
@@ -379,12 +379,12 @@
             
             if (isFavorited) {
                 icon.className = 'fas fa-heart mr-2 text-red-500';
-                if (text) text.textContent = '已收藏';
-                btn.title = '取消收藏';
+                if (text) text.textContent = 'Favorited';
+                btn.title = 'Unfavorite';
             } else {
                 icon.className = 'far fa-heart mr-2';
-                if (text) text.textContent = '收藏';
-                btn.title = '收藏';
+                if (text) text.textContent = 'Favorite';
+                btn.title = 'Favorite';
             }
         }
 
@@ -435,7 +435,7 @@
                     <p class="text-red-600 dark:text-red-400 text-lg mb-4">${message}</p>
                     <a href="index.html" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
                         <i class="fas fa-home mr-2"></i>
-                        返回首页
+                        Back to Home
                     </a>
                 </div>
             `;

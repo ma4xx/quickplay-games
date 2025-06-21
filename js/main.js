@@ -145,6 +145,11 @@ function searchGames(query) {
     );
 }
 
+// 获取收藏游戏ID列表的辅助函数
+function getFavorites() {
+    return JSON.parse(localStorage.getItem('favorites') || '[]');
+}
+
 // 初始化应用程序
 document.addEventListener('DOMContentLoaded', function() {
     console.log('QuickPlay Games initialized');
